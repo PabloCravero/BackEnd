@@ -3,7 +3,11 @@ const mongoose = require('mongoose');
 console.log(process.env.NODE_ENV);
 console.log(process.env.DB_NAME);
 // Cargar las variables de entorno
-const dbURI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}/${process.env.DB_NAME}`;
+if (process.env.NODE_ENV === 'test') {
+    const dbURI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}/${process.env.DB_NAME_TEST}-test`;
+} else {
+    const dbURI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}/${process.env.DB_NAME}`;
+}
 // Conectar a MongoDB
 
 async function connectDB() {
