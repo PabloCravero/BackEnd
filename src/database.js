@@ -1,4 +1,4 @@
-require('dotenv').config({ path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env.development' });
+require('dotenv').config();
 const mongoose = require('mongoose');
 console.log(process.env.NODE_ENV);
 console.log(process.env.DB_NAME);
