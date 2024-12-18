@@ -125,6 +125,7 @@ router.get('/product/:productId', async(req, res) => {
     if (req.file) {
       const imageFileName = req.file.filename;
       updateOps.image = 'uploadsProductsImages/' + imageFileName;
+      console.log("imagen", updateOps.image);
     }
     
     console.log("estas son las acts",updateOps);
