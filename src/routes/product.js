@@ -124,6 +124,7 @@ router.get('/product/:productId', async(req, res) => {
     const updateOps = {desc, stock, price, cat, featured, stockMin, supplier};
 
     if (req.file) {
+      const imageFileName = req.file.filename;
       updateOps.image = 'uploadsProductsImages/' + imageFileName;
     }
     
