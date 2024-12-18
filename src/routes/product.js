@@ -72,7 +72,7 @@ router.get('/product/:productId', async(req, res) => {
     featured: product.featured,
     stockMin: product.stockMin,
     supplier: product.supplier,
-    image: `http://localhost:3000/${product.image}`
+    image: `https://backend-production-ff519.up.railway.app/${product.image}`
   };
 
   res.json(productDetails);
