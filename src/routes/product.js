@@ -121,11 +121,11 @@ router.get('/product/:productId', async(req, res) => {
   router.patch('/product/:productId', upload.single('image'), async (req, res) => {
     const productId = req.params.productId;
     const { desc, stock, price, cat, featured, stockMin, supplier } = req.body;
+    const updateOps = {desc, stock, price, cat, featured, stockMin, supplier};
     if (req.file) {
       const imageFileName = req.file.filename;
-      image = 'uploadsProductsImages/' + imageFileName;
+      updateOps.image = 'uploadsProductsImages/' + imageFileName;
     }
-    const updateOps = {desc, stock, price, cat, featured, stockMin, supplier, image};
     
     console.log("estas son las acts",updateOps);
     try {
