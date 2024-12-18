@@ -118,13 +118,18 @@ router.get('/product/:productId', async(req, res) => {
     }
   });
     
-  router.patch('/product/:productId', async (req, res) => {
+  router.patch('/product/:productId', upload.single('image'), async (req, res) => {
     const productId = req.params.productId;
-    const { desc, stock, price, cat, featured, stockMin, supplier, image } = req.body;
-    const updateOps = {desc, stock, price, cat, featured, stockMin, supplier, image}
+    const { desc, stock, price, cat, featured, stockMin, supplier } = req.body;
+    const updateOps = {desc, stock, price, cat, featured, stockMin, supplier};
+
+    if (req.file) {
+      updateOps.image = 'uploadsProductsImages/' + imageFileName;
+    }
+    
     console.log("estas son las acts",updateOps);
     try {
-      const result = await Product.findByIdAndUpdate( productId, updateOps );
+      const result = await Product.findByIdAndUpdate( productId, updateOps, { new: true });
   
       if (!result) {
         return res.status(404).json({ error: 'Producto no encontrado' });
