@@ -72,7 +72,7 @@ router.get('/product/:productId', async(req, res) => {
     featured: product.featured,
     stockMin: product.stockMin,
     supplier: product.supplier,
-    image: `https://backend-production-ff519.up.railway.app/${product.image}`
+    image: product.image
   };
 
   res.json(productDetails);
@@ -121,7 +121,7 @@ router.get('/product/:productId', async(req, res) => {
   router.patch('/product/:productId', upload.single('image'), async (req, res) => {
     const productId = req.params.productId;
     const { desc, stock, price, cat, featured, stockMin, supplier } = req.body;
-    const updateOps = {desc, stock, price, cat, featured, stockMin, supplier, };
+    const updateOps = {desc, stock, price, cat, featured, stockMin, supplier, image: ''};
 
     if (req.file) {
       const imageFileName = req.file.filename;
